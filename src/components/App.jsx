@@ -1,6 +1,6 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import logo from "./images/header__image.png";
+import logo from "../images/header__image.png";
+import Header from "./Header/Header.js";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -8,13 +8,7 @@ function App() {
   return (
     <>
       <div class="page">
-        <header class="header">
-          <img
-            class="header__image"
-            src={logo}
-            alt="Logo do site Around The Us."
-          />
-        </header>
+        <Header></Header>
 
         <main class="main">
           <section class="profile">
