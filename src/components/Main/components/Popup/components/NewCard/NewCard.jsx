@@ -26,7 +26,7 @@ export default function NewCard() {
         <input
           id="card-link"
           className="popup__input popup__input_type_url"
-          name="link"
+          name="card-link"
           placeholder="URL da imagem"
           type="url"
           required
