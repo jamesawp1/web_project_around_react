@@ -2,13 +2,14 @@ import { useState } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
+import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
 
   const newCardPopup = { title: "New Card", children: <NewCard /> };
-
   const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
+  const editAvatarPopup = { title: "Edit Avatar", children: <EditAvatar /> };
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -26,6 +27,7 @@ export default function Main() {
             className="profile__image"
             src="#"
             alt="Imagem de um senhor de idade."
+            onClick={() => handleOpenPopup(editAvatarPopup)}
           />
           <img
             className="profile__edit-picture"
