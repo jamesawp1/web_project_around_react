@@ -9,6 +9,10 @@ export default function Main() {
     setPopup(popup);
   }
 
+  function handleClosePopup() {
+    setPopup(null);
+  }
+
   return (
     <main className="main">
       <section className="profile">
