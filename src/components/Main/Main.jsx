@@ -2,6 +2,13 @@ import { useState } from "react";
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
+
+  const newCardPopup = { title: "New Card", children: <NewCard /> };
+
+  function handleOpenPopup(popup) {
+    setPopup(popup);
+  }
+
   return (
     <main className="main">
       <section className="profile">
@@ -24,7 +31,10 @@ export default function Main() {
           </div>
           <h2 id="profile-role" className="profile__subtitle"></h2>
         </div>
-        <button className="profile__add-button"></button>
+        <button
+          className="profile__add-button"
+          onClick={() => handleOpenPopup(newCardPopup)}
+        ></button>
       </section>
 
       <div className="gallery">
