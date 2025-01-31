@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 export default function Main() {
+  const [popup, setPopup] = useState(null);
   return (
     <main className="main">
       <section className="profile">
@@ -48,6 +51,11 @@ export default function Main() {
           </div>
         </template>
       </div>
+      {popup && (
+        <Popup onClose={handleClosePopup} title={popup.title}>
+          {popup.children}
+        </Popup>
+      )}
     </main>
   );
 }
