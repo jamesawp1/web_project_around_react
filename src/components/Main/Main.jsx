@@ -1,9 +1,14 @@
 import { useState } from "react";
+import Popup from "./components/Popup/Popup";
+import NewCard from "./components/Popup/components/NewCard/NewCard";
+import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
 
   const newCardPopup = { title: "New Card", children: <NewCard /> };
+
+  const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -31,7 +36,10 @@ export default function Main() {
         <div className="profile__info">
           <div className="profile__info-wrapper">
             <h1 id="profile-name" className="profile__title"></h1>
-            <button className="profile__edit-button"></button>
+            <button
+              className="profile__edit-button"
+              onClick={() => handleOpenPopup(editProfilePopup)}
+            ></button>
           </div>
           <h2 id="profile-role" className="profile__subtitle"></h2>
         </div>
