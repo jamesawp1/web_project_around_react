@@ -1,5 +1,8 @@
+import ImagePopup from "../Popup/components/ImagePopup/ImagePopup";
+
 export default function Card(props) {
-  const { name, link, isLiked } = props.card;
+  const { name, link, isLiked, handleOpenPopup } = props.card;
+  const imageComponent = { title: null, children: <ImagePopup /> };
 
   return (
     <li className="gallery__card">
@@ -10,7 +13,12 @@ export default function Card(props) {
           alt="Ícone do botão que exclui uma imagem da galeria, representando uma lixeira"
         />
       </button>
-      <img className="gallery__card-image" src={link} alt={name} />
+      <img
+        className="gallery__card-image"
+        src={link}
+        alt={name}
+        onClick={handleOpenPopup(imageComponent)}
+      />
       <div className="gallery__wrapper-text-and-like-button">
         <h2 className="gallery__card-name">{name}</h2>
         <button className="gallery__like-button">
