@@ -3,6 +3,7 @@ import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
+import Card from "./components/Card/Card";
 
 const cards = [
   {
@@ -71,30 +72,11 @@ export default function Main() {
         ></button>
       </section>
 
-      <div className="gallery">
-        <template id="template">
-          <div className="gallery__card">
-            <button className="gallery__delete-button">
-              <img
-                className="gallery__delete-icon"
-                src="./images/delete-icon.png"
-                alt="Ícone do botão que exclui uma imagem da galeria, representando uma lixeira"
-              />
-            </button>
-            <img className="gallery__card-image" src="#" alt="" />
-            <div className="gallery__wrapper-text-and-like-button">
-              <p className="gallery__card-name"></p>
-              <button className="gallery__like-button">
-                <img
-                  className="gallery__like-icon"
-                  src="./images/button__icon.svg"
-                  alt="Ícone do botão de curtir, em formato de coração"
-                />
-              </button>
-            </div>
-          </div>
-        </template>
-      </div>
+      <ul className="gallery">
+        {cards.map((card) => {
+          <Card key={card._id} card={card} />;
+        })}
+      </ul>
       {popup && (
         <Popup onClose={handleClosePopup} title={popup.title}>
           {popup.children}
