@@ -1,4 +1,6 @@
 /*import ImagePopup from "../Popup/components/ImagePopup/ImagePopup";*/
+import deleteIcon from "../../../../images/delete-icon.png";
+import likeIcon from "../../../../images/button__icon.svg";
 
 export default function Card(props) {
   const { name, link, isLiked /*handleOpenPopup*/ } = props.card;
@@ -12,7 +14,7 @@ export default function Card(props) {
       <button className="gallery__delete-button">
         <img
           className="gallery__delete-icon"
-          src="./images/delete-icon.png"
+          src={deleteIcon}
           alt="Ícone do botão que exclui uma imagem da galeria, representando uma lixeira"
         />
       </button>
@@ -27,7 +29,7 @@ export default function Card(props) {
         <button className="gallery__like-button">
           <img
             className="gallery__like-icon"
-            src="./images/button__icon.svg"
+            src={likeIcon}
             alt="Ícone do botão de curtir, em formato de coração"
           />
         </button>
