@@ -1,3 +1,5 @@
+import closePopupImg from "../../../../images/close_icon.png";
+
 export default function Popup(props) {
   const { onClose, title, children } = props;
 
@@ -9,6 +11,7 @@ export default function Popup(props) {
           className="popup__close-button"
           type="button"
           onClick={onClose}
+          src={closePopupImg}
         />
         <h2 className="popup__title">{title}</h2>
         {children}

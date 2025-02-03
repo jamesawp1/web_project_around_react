@@ -6,7 +6,6 @@ export default function Card(props) {
     title: null,
     children: <ImagePopup card={props.card} />,
   };*/
-  console.log(name, link, isLiked);
 
   return (
     <li className="gallery__card">
