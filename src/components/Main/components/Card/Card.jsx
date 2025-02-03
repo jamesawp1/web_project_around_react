@@ -1,13 +1,13 @@
-/*import ImagePopup from "../Popup/components/ImagePopup/ImagePopup";*/
+import ImagePopup from "../Popup/components/ImagePopup/ImagePopup";
 import deleteIcon from "../../../../images/delete-icon.png";
 import likeIcon from "../../../../images/button__icon.svg";
 
 export default function Card(props) {
-  const { name, link, isLiked /*handleOpenPopup*/ } = props.card;
-  /*const imageComponent = {
-    title: null,
+  const { name, link } = props.card;
+  const handleOpenPopup = props.openImg;
+  const imageComponent = {
     children: <ImagePopup card={props.card} />,
-  };*/
+  };
 
   return (
     <li className="gallery__card">
@@ -22,7 +22,7 @@ export default function Card(props) {
         className="gallery__card-image"
         src={link}
         alt={name}
-        /*onClick={handleOpenPopup(imageComponent)}*/
+        onClick={() => handleOpenPopup(imageComponent)}
       />
       <div className="gallery__wrapper-text-and-like-button">
         <h2 className="gallery__card-name">{name}</h2>

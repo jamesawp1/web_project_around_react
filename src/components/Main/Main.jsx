@@ -79,7 +79,7 @@ export default function Main() {
 
       <ul className="gallery">
         {cards.map((card) => {
-          return <Card key={card._id} card={card} />;
+          return <Card key={card._id} card={card} openImg={handleOpenPopup} />;
         })}
       </ul>
       {popup && (

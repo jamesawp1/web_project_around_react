@@ -5,7 +5,11 @@ export default function Popup(props) {
 
   return (
     <div className="popup">
-      <div className="popup__container">
+      <div
+        className={`popup__container ${
+          !title ? "popup-view-image__image-title-container" : ""
+        }`}
+      >
         <img
           aria-label="Close modal"
           className="popup__close-button"
@@ -13,7 +17,7 @@ export default function Popup(props) {
           onClick={onClose}
           src={closePopupImg}
         />
-        <h2 className="popup__title">{title}</h2>
+        {title && <h3 className="popup__title">{title}</h3>}
         {children}
       </div>
     </div>

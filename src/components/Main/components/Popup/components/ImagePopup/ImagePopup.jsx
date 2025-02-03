@@ -1,24 +1,10 @@
 export default function ImagePopup(props) {
-  const { onClose, title, children } = props;
+  const { name, link } = props.card;
 
   return (
-    <div className="popup">
-      <div
-        className={`popup__content ${
-          !title ? "popup__content_content_image" : ""
-        }`}
-      >
-        <button
-          aria-label="Close modal"
-          className="popup__close"
-          type="button"
-          onClick={onClose}
-        />
-
-        {title && <h3 className="popup__title">{title}</h3>}
-
-        {children}
-      </div>
-    </div>
+    <>
+      <img className="popup-view-image__image" src={link} alt={name} />
+      <p className="popup-view-image__title">{name}</p>
+    </>
   );
 }
