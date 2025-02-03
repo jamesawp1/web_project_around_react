@@ -3,7 +3,7 @@ import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
-import Card from "./components/Card/Card";
+import Card from "./components/Card/Card.jsx";
 
 const cards = [
   {
@@ -23,7 +23,6 @@ const cards = [
     createdAt: "2019-07-05T08:11:58.324Z",
   },
 ];
-console.log(cards);
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
@@ -74,7 +73,7 @@ export default function Main() {
 
       <ul className="gallery">
         {cards.map((card) => {
-          <Card key={card._id} card={card} />;
+          return <Card key={card._id} card={card} />;
         })}
       </ul>
       {popup && (
