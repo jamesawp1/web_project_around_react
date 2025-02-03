@@ -1,5 +1,7 @@
 # React + Vite
 
+# Nesse projeto, o intuito inicial é migrar e adaptar o projeto web_project_around para um novo projeto React auxíliado pelo Vite.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
