@@ -4,6 +4,8 @@ import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card.jsx";
+import profileImg from "../../images/profile__image.jpg";
+import editImg from "../../images/icon__change-picture-profile.svg";
 
 const cards = [
   {
@@ -45,25 +47,29 @@ export default function Main() {
         <div className="profile__picture-container">
           <img
             className="profile__image"
-            src="#"
+            src={profileImg}
             alt="Imagem de um senhor de idade."
             onClick={() => handleOpenPopup(editAvatarPopup)}
           />
           <img
             className="profile__edit-picture"
-            src="./images/icon__change-picture-profile.svg"
+            src={editImg}
             alt="Imagem representando uma caneta"
           />
         </div>
         <div className="profile__info">
           <div className="profile__info-wrapper">
-            <h1 id="profile-name" className="profile__title"></h1>
+            <h1 id="profile-name" className="profile__title">
+              Jacques Cousteau
+            </h1>
             <button
               className="profile__edit-button"
               onClick={() => handleOpenPopup(editProfilePopup)}
             ></button>
           </div>
-          <h2 id="profile-role" className="profile__subtitle"></h2>
+          <h2 id="profile-role" className="profile__subtitle">
+            Explorador
+          </h2>
         </div>
         <button
           className="profile__add-button"
