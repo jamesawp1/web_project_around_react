@@ -7,6 +7,8 @@ import Card from "./components/Card/Card.jsx";
 import profileImg from "../../images/profile__image.jpg";
 import editImg from "../../images/icon__change-picture-profile.svg";
 import { api } from "../../utils/api.js";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
@@ -21,6 +23,9 @@ export default function Main() {
 
     setCards(cardsResponse);
   }
+
+  const { currentUser } = useContext(CurrentUserContext);
+  console.log(currentUser);
 
   const newCardPopup = { title: "New Card", children: <NewCard /> };
   const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
@@ -40,7 +45,7 @@ export default function Main() {
         <div className="profile__picture-container">
           <img
             className="profile__image"
-            src={profileImg}
+            src={currentUser.avatar}
             alt="Imagem de um senhor de idade."
             onClick={() => handleOpenPopup(editAvatarPopup)}
           />
@@ -53,7 +58,7 @@ export default function Main() {
         <div className="profile__info">
           <div className="profile__info-wrapper">
             <h1 id="profile-name" className="profile__title">
-              Jacques Cousteau
+              {currentUser.name}
             </h1>
             <button
               className="profile__edit-button"
@@ -61,7 +66,7 @@ export default function Main() {
             ></button>
           </div>
           <h2 id="profile-role" className="profile__subtitle">
-            Explorador
+            {currentUser.about}
           </h2>
         </div>
         <button
