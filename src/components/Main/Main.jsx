@@ -4,7 +4,6 @@ import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card.jsx";
-import profileImg from "../../images/profile__image.jpg";
 import editImg from "../../images/icon__change-picture-profile.svg";
 import { api } from "../../utils/api.js";
 import { useContext } from "react";
@@ -25,7 +24,56 @@ export default function Main() {
   }
 
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
+
+  /*async function handleCardLike(card) {
+    if (!card.isLiked) {
+      await api.putLikeUserCard(card._id).then((updatedCard) => {
+        const cartoso = updatedCard.json();
+        setCards((cards) => {
+          return cards.map((currentCard) => {
+            return currentCard._id === card._id ? cartoso : currentCard;
+          });
+        });
+      });
+    } else {
+      await api.deleteLikeUserCard(card._id).then((updatedCard) => {
+        setCards((cards) => {
+          return cards.map((currentCard) => {
+            return currentCard._id === card._id ? updatedCard : currentCard;
+          });
+        });
+      });
+    }
+  }*/
+  async function handleCardLike(card) {
+    // Verificar mais uma vez se esse cartão já foi curtido
+    const isLiked = card.isLiked;
+
+    // Enviar uma solicitação para a API e obter os dados do cartão atualizados
+    /*await api
+      .changeLikeCardStatus(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id
+              ? { ...currentCard, isLiked: newCard.isLiked }
+              : currentCard
+          )
+        );
+      })
+      .catch((error) => console.error(`OLHA O ERRO ${error}`));*/
+    await api
+      .changeLikeCardStatus(card._id, isLiked)
+      .then((response) => response.json())
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((error) => console.error(error));
+  }
 
   const newCardPopup = { title: "New Card", children: <NewCard /> };
   const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
@@ -77,7 +125,14 @@ export default function Main() {
 
       <ul className="gallery">
         {cards.map((card) => {
-          return <Card key={card._id} card={card} openImg={handleOpenPopup} />;
+          return (
+            <Card
+              key={card._id}
+              card={card}
+              openImg={handleOpenPopup}
+              onCardLike={handleCardLike}
+            />
+          );
         })}
       </ul>
       {popup && (

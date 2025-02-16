@@ -62,6 +62,12 @@ class Api {
     });
   }
 
+  changeLikeCardStatus(cardId, isLiked) {
+    return isLiked === false
+      ? this.putLikeUserCard(cardId)
+      : this.deleteLikeUserCard(cardId);
+  }
+
   patchPicProfile(picLink) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",

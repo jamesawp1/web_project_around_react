@@ -6,10 +6,15 @@ import likeIconActive from "../../../../images/button__icon_active.svg";
 export default function Card(props) {
   const { name, link, isLiked } = props.card;
   const handleOpenPopup = props.openImg;
+  const { onCardLike } = props;
   const imageComponent = {
     children: <ImagePopup card={props.card} />,
   };
   const cardLikeButtonSrc = isLiked ? likeIcon : likeIconActive;
+
+  function handleLikeClick() {
+    onCardLike(props.card);
+  }
 
   return (
     <li className="gallery__card">
@@ -33,6 +38,7 @@ export default function Card(props) {
             className="gallery__like-icon"
             src={cardLikeButtonSrc}
             alt="Ícone do botão de curtir, em formato de coração"
+            onClick={handleLikeClick}
           />
         </button>
       </div>
