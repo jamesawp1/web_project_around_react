@@ -22,6 +22,15 @@ export default function Main() {
     setCards(cardsResponse);
   }
 
+  const [user, setUser] = useState([]);
+  async function handleGetUser() {
+    const response = await api.getInitialUserInfo();
+    const userResponse = await response.json();
+  }
+  useEffect(() => {
+    handleGetUser();
+  }, []);
+
   const newCardPopup = { title: "New Card", children: <NewCard /> };
   const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
   const editAvatarPopup = { title: "Edit Avatar", children: <EditAvatar /> };
