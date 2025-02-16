@@ -1,13 +1,15 @@
 import ImagePopup from "../Popup/components/ImagePopup/ImagePopup";
 import deleteIcon from "../../../../images/delete-icon.png";
 import likeIcon from "../../../../images/button__icon.svg";
+import likeIconActive from "../../../../images/button__icon_active.svg";
 
 export default function Card(props) {
-  const { name, link } = props.card;
+  const { name, link, isLiked } = props.card;
   const handleOpenPopup = props.openImg;
   const imageComponent = {
     children: <ImagePopup card={props.card} />,
   };
+  const cardLikeButtonSrc = isLiked ? likeIcon : likeIconActive;
 
   return (
     <li className="gallery__card">
@@ -29,7 +31,7 @@ export default function Card(props) {
         <button className="gallery__like-button">
           <img
             className="gallery__like-icon"
-            src={likeIcon}
+            src={cardLikeButtonSrc}
             alt="Ícone do botão de curtir, em formato de coração"
           />
         </button>
