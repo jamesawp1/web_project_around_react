@@ -7,6 +7,7 @@ export default function Card(props) {
   const { name, link, isLiked } = props.card;
   const handleOpenPopup = props.openImg;
   const { onCardLike } = props;
+  const { onCardDelete } = props;
   const imageComponent = {
     children: <ImagePopup card={props.card} />,
   };
@@ -16,6 +17,10 @@ export default function Card(props) {
     onCardLike(props.card);
   }
 
+  function handleDeleteClick() {
+    onCardDelete(props.card);
+  }
+
   return (
     <li className="gallery__card">
       <button className="gallery__delete-button">
@@ -23,6 +28,7 @@ export default function Card(props) {
           className="gallery__delete-icon"
           src={deleteIcon}
           alt="Ícone do botão que exclui uma imagem da galeria, representando uma lixeira"
+          onClick={handleDeleteClick}
         />
       </button>
       <img

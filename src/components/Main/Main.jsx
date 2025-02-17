@@ -75,6 +75,22 @@ export default function Main() {
       .catch((error) => console.error(error));
   }
 
+  async function handleCardDelete(card) {
+    await api
+      .deleteUserCard(card._id)
+      .then((res) => {
+        if (res.status !== 200) {
+          return Promise.reject("Erro no delete card");
+        }
+        setCards(
+          cards.filter((currentCard) => {
+            return currentCard._id !== card._id;
+          })
+        );
+      })
+      .catch((error) => console.error(error));
+  }
+
   const newCardPopup = { title: "New Card", children: <NewCard /> };
   const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
   const editAvatarPopup = { title: "Edit Avatar", children: <EditAvatar /> };
@@ -131,6 +147,7 @@ export default function Main() {
               card={card}
               openImg={handleOpenPopup}
               onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
             />
           );
         })}
