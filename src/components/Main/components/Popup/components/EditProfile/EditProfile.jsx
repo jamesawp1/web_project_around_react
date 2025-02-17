@@ -7,9 +7,13 @@ export default function EditProfile() {
   const { name, setName } = useState(currentUser.name);
   const { description, setDescription } = useState(currentUser.about);
 
-  function handleChange(e, param) {
-    param(e.target.value);
-  }
+  const handleNameChange = (event) => {
+    setName(event.target.value); // Atualiza o nome (name) quando a entrada for alterada
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value); // Atualiza a descrição (description) quando a entrada for alterada
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault(); // Impede o comportamento padrão de envio do formulário
@@ -35,7 +39,7 @@ export default function EditProfile() {
           minLength="2"
           maxLength="40"
           value={name}
-          onChange={handleChange(setName)}
+          onChange={handleNameChange}
           required
         />
         <span
@@ -53,7 +57,7 @@ export default function EditProfile() {
           minLength="2"
           maxLength="200"
           value={description}
-          onChange={handleChange(setDescription)}
+          onChange={handleDescriptionChange}
           required
         />
         <span
