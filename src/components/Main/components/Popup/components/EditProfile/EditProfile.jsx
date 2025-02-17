@@ -2,8 +2,8 @@ import { useState, useContext } from "react";
 import { CurrentUserContext } from "../../../../../../context/CurrentUserContext.js";
 
 export default function EditProfile() {
-  const currentUser = useContext(CurrentUserContext);
-
+  const userContext = useContext(CurrentUserContext);
+  const { currentUser, handleUpdateUser } = userContext;
   const { name, setName } = useState(currentUser.name);
   const { description, setDescription } = useState(currentUser.about);
 
@@ -11,12 +11,19 @@ export default function EditProfile() {
     param(e.target.value);
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+
+    handleUpdateUser({ name, about: description }); // Atualiza as informações do usuário
+  };
+
   return (
     <form
       className="popup__form"
       name="card-form"
       id="new-card-form"
       noValidate
+      onSubmit={handleSubmit}
     >
       <label className="popup__field">
         <input

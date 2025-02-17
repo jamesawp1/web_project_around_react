@@ -7,7 +7,7 @@ import { CurrentUserContext } from "../context/CurrentUserContext.js";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  async function handleGetUser() {
+  /*async function handleGetUser() {
     const response = await api.getInitialUserInfo();
     const userResponse = await response.json();
 
@@ -15,12 +15,28 @@ function App() {
   }
   useEffect(() => {
     handleGetUser();
+  }, []);*/
+
+  useEffect(() => {
+    (async () => {
+      await api.getInitialUserInfo().then((data) => {
+        setCurrentUser(data);
+      });
+    })();
   }, []);
+
+  const handleUpdateUser = (data) => {
+    (async () => {
+      await api.patchUserInfo(data).then((newData) => {
+        setCurrentUser(newData);
+      });
+    })();
+  };
 
   return (
     <>
       <div className="page">
-        <CurrentUserContext.Provider value={{ currentUser }}>
+        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
           <Header></Header>
 
           <Main></Main>
