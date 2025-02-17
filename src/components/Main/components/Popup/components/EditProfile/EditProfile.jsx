@@ -1,4 +1,13 @@
+import { useState } from "react";
+
 export default function EditProfile() {
+  const { name, setName } = useState({});
+  const { description, setDescription } = useState({});
+
+  function handleChange(e, param) {
+    param(e.target.value);
+  }
+
   return (
     <form
       className="popup__form"
@@ -15,6 +24,8 @@ export default function EditProfile() {
           placeholder="Nome"
           minLength="2"
           maxLength="40"
+          value={name}
+          onChange={handleChange}
           required
         />
         <span
@@ -31,6 +42,8 @@ export default function EditProfile() {
           placeholder="Sobre Mim"
           minLength="2"
           maxLength="200"
+          value={description}
+          onChange={handleChange}
           required
         />
         <span
