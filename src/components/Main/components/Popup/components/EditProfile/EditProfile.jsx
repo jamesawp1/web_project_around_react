@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CurrentUserContext } from "../../../../../../context/CurrentUserContext.js";
 
 export default function EditProfile() {
-  const { name, setName } = useState({});
-  const { description, setDescription } = useState({});
+  const currentUser = useContext(CurrentUserContext);
+
+  const { name, setName } = useState(currentUser.name);
+  const { description, setDescription } = useState(currentUser.about);
 
   function handleChange(e, param) {
     param(e.target.value);
@@ -25,7 +28,7 @@ export default function EditProfile() {
           minLength="2"
           maxLength="40"
           value={name}
-          onChange={handleChange}
+          onChange={handleChange(setName)}
           required
         />
         <span
@@ -43,7 +46,7 @@ export default function EditProfile() {
           minLength="2"
           maxLength="200"
           value={description}
-          onChange={handleChange}
+          onChange={handleChange(setDescription)}
           required
         />
         <span
