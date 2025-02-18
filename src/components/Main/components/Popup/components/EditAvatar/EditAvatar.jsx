@@ -1,10 +1,27 @@
+import { useRef, useContext } from "react";
+import { CurrentUserContext } from "../../../../../../context/CurrentUserContext.js";
+
 export default function EditAvatar() {
+  const userContext = useContext(CurrentUserContext);
+  const { handleUpdateAvatar } = userContext;
+
+  const avatarRef = useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    handleUpdateAvatar({
+      avatar: avatarRef,
+    });
+  }
+
   return (
     <form
       className="popup__form"
       name="card-form"
       id="new-card-form"
       noValidate
+      onSubmit={handleSubmit}
     >
       <label className="popup__field">
         <input
@@ -14,6 +31,7 @@ export default function EditAvatar() {
           placeholder="URL da fotografia"
           type="url"
           required
+          ref={avatarRef}
         />
         <span
           id="picture-link-error"

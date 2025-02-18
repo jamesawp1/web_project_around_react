@@ -42,10 +42,22 @@ function App() {
   function handleClosePopup() {
     setPopup(null);
   }
+
+  const handleUpdateAvatar = (data) => {
+    (async () => {
+      await api.patchPicProfile(data).then((avatar) => {
+        setCurrentUser(avatar);
+        handleClosePopup();
+      });
+    })();
+  };
+
   return (
     <>
       <div className="page">
-        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
+        <CurrentUserContext.Provider
+          value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}
+        >
           <Header></Header>
 
           <Main
