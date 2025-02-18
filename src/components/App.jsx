@@ -29,10 +29,19 @@ function App() {
     (async () => {
       await api.patchUserInfo(data).then((newData) => {
         setCurrentUser(newData);
+        handleClosePopup();
       });
     })();
   };
 
+  const [popup, setPopup] = useState(null);
+  function handleOpenPopup(popup) {
+    setPopup(popup);
+  }
+
+  function handleClosePopup() {
+    setPopup(null);
+  }
   return (
     <>
       <div className="page">

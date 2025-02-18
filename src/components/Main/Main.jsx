@@ -10,8 +10,6 @@ import { useContext } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 
 export default function Main() {
-  const [popup, setPopup] = useState(null);
-
   const [cards, setCards] = useState([]);
   useEffect(() => {
     handleGetInitialCards();
@@ -94,14 +92,6 @@ export default function Main() {
   const newCardPopup = { title: "New Card", children: <NewCard /> };
   const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
   const editAvatarPopup = { title: "Edit Avatar", children: <EditAvatar /> };
-
-  function handleOpenPopup(popup) {
-    setPopup(popup);
-  }
-
-  function handleClosePopup() {
-    setPopup(null);
-  }
 
   return (
     <main className="main">
