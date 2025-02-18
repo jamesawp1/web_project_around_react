@@ -9,7 +9,7 @@ import { api } from "../../utils/api.js";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 
-export default function Main() {
+export default function Main(props) {
   const [cards, setCards] = useState([]);
   useEffect(() => {
     handleGetInitialCards();
@@ -89,6 +89,14 @@ export default function Main() {
       .catch((error) => console.error(error));
   }
 
+  const { onPopup, onOpenPopup, onClosePopup } = props;
+  function handleOpenClick(popup) {
+    onOpenPopup(popup);
+  }
+  function handleCloseClick() {
+    onClosePopup();
+  }
+
   const newCardPopup = { title: "New Card", children: <NewCard /> };
   const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
   const editAvatarPopup = { title: "Edit Avatar", children: <EditAvatar /> };
@@ -101,7 +109,7 @@ export default function Main() {
             className="profile__image"
             src={currentUser.avatar}
             alt="Imagem de um senhor de idade."
-            onClick={() => handleOpenPopup(editAvatarPopup)}
+            onClick={() => handleOpenClick(editAvatarPopup)}
           />
           <img
             className="profile__edit-picture"
@@ -116,7 +124,7 @@ export default function Main() {
             </h1>
             <button
               className="profile__edit-button"
-              onClick={() => handleOpenPopup(editProfilePopup)}
+              onClick={() => handleOpenClick(editProfilePopup)}
             ></button>
           </div>
           <h2 id="profile-role" className="profile__subtitle">
@@ -125,7 +133,7 @@ export default function Main() {
         </div>
         <button
           className="profile__add-button"
-          onClick={() => handleOpenPopup(newCardPopup)}
+          onClick={() => handleOpenClick(newCardPopup)}
         ></button>
       </section>
 
@@ -135,16 +143,16 @@ export default function Main() {
             <Card
               key={card._id}
               card={card}
-              openImg={handleOpenPopup}
+              openImg={handleOpenClick}
               onCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
             />
           );
         })}
       </ul>
-      {popup && (
-        <Popup onClose={handleClosePopup} title={popup.title}>
-          {popup.children}
+      {onPopup && (
+        <Popup onClose={handleCloseClick} title={onPopup.title}>
+          {onPopup.children}
         </Popup>
       )}
     </main>

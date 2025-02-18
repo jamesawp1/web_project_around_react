@@ -48,7 +48,11 @@ function App() {
         <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
           <Header></Header>
 
-          <Main></Main>
+          <Main
+            onPopup={popup}
+            onOpenPopup={handleOpenPopup}
+            onClosePopup={handleClosePopup}
+          ></Main>
 
           <Footer></Footer>
         </CurrentUserContext.Provider>
