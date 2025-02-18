@@ -78,13 +78,18 @@ class Api {
       : this.deleteLikeUserCard(cardId);
   }
 
-  patchPicProfile(picLink) {
+  patchPicProfile({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: picLink.link,
+        avatar,
       }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject(`ERRO ${res.status}`);
     });
   }
 }

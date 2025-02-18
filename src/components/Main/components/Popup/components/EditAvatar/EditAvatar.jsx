@@ -11,7 +11,7 @@ export default function EditAvatar() {
     e.preventDefault();
 
     handleUpdateAvatar({
-      avatar: avatarRef,
+      avatar: avatarRef.current.value,
     });
   }
 

@@ -47,6 +47,7 @@ function App() {
     (async () => {
       await api.patchPicProfile(data).then((avatar) => {
         setCurrentUser(avatar);
+
         handleClosePopup();
       });
     })();
