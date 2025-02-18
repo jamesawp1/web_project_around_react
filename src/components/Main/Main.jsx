@@ -89,7 +89,7 @@ export default function Main(props) {
       .catch((error) => console.error(error));
   }
 
-  const { onPopup, onOpenPopup, onClosePopup } = props;
+  const { popup, onOpenPopup, onClosePopup } = props;
   function handleOpenClick(popup) {
     onOpenPopup(popup);
   }
@@ -150,9 +150,9 @@ export default function Main(props) {
           );
         })}
       </ul>
-      {onPopup && (
-        <Popup onClose={handleCloseClick} title={onPopup.title}>
-          {onPopup.children}
+      {popup && (
+        <Popup onClose={handleCloseClick} title={popup.title}>
+          {popup.children}
         </Popup>
       )}
     </main>

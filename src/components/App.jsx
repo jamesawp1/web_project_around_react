@@ -49,7 +49,7 @@ function App() {
           <Header></Header>
 
           <Main
-            onPopup={popup}
+            popup={popup}
             onOpenPopup={handleOpenPopup}
             onClosePopup={handleClosePopup}
           ></Main>
