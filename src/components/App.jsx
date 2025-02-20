@@ -110,11 +110,21 @@ function App() {
       .catch((error) => console.error(error));
   }
 
+  async function handleAddPlaceSubmit(card) {
+    await api.postUserCard(card).then((newCard) => {
+      setCards([newCard, ...cards]);
+    });
+  }
+
   return (
     <>
       <div className="page">
         <CurrentUserContext.Provider
-          value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}
+          value={{
+            currentUser,
+            handleUpdateUser,
+            handleUpdateAvatar,
+          }}
         >
           <Header></Header>
 
@@ -125,6 +135,7 @@ function App() {
             cards={cards}
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
+            onAddPlaceSubmit={handleAddPlaceSubmit}
           ></Main>
 
           <Footer></Footer>

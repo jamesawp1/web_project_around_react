@@ -31,8 +31,15 @@ export default function Main(props) {
     }
   }*/
 
-  const { popup, onOpenPopup, onClosePopup, cards, onCardLike, onCardDelete } =
-    props;
+  const {
+    popup,
+    onOpenPopup,
+    onClosePopup,
+    cards,
+    onCardLike,
+    onCardDelete,
+    onAddPlaceSubmit,
+  } = props;
   function handleOpenClick(popup) {
     onOpenPopup(popup);
   }
@@ -40,7 +47,10 @@ export default function Main(props) {
     onClosePopup();
   }
 
-  const newCardPopup = { title: "New Card", children: <NewCard /> };
+  const newCardPopup = {
+    title: "New Card",
+    children: <NewCard onAddCardSubmit={onAddPlaceSubmit} />,
+  };
   const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
   const editAvatarPopup = { title: "Edit Avatar", children: <EditAvatar /> };
 
