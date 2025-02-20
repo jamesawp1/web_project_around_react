@@ -122,6 +122,9 @@ function App() {
             popup={popup}
             onOpenPopup={handleOpenPopup}
             onClosePopup={handleClosePopup}
+            cards={cards}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
           ></Main>
 
           <Footer></Footer>

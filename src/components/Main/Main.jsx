@@ -31,7 +31,8 @@ export default function Main(props) {
     }
   }*/
 
-  const { popup, onOpenPopup, onClosePopup } = props;
+  const { popup, onOpenPopup, onClosePopup, cards, onCardLike, onCardDelete } =
+    props;
   function handleOpenClick(popup) {
     onOpenPopup(popup);
   }
@@ -86,8 +87,8 @@ export default function Main(props) {
               key={card._id}
               card={card}
               openImg={handleOpenClick}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
             />
           );
         })}
