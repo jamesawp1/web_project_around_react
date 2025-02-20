@@ -10,9 +10,14 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      await api.getInitialUserInfo().then((data) => {
-        setCurrentUser(data);
-      });
+      await api
+        .getInitialUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((err) => {
+          console.log(`ERRO NA OBTENÇÃO DAS INFORMAÇÕES DE PERFIL: ${err}`);
+        });
     })();
   }, []);
 
@@ -68,7 +73,9 @@ function App() {
           })
         );
       })
-      .catch((error) => console.error(error))
+      .catch((err) => {
+        console.log(`ERRO AO EXCLUIR O CARTÃO: ${err}`);
+      })
       .finally(() => {
         handleClosePopup();
       });
@@ -87,7 +94,9 @@ function App() {
           )
         );
       })
-      .catch((error) => console.error(error));
+      .catch((err) => {
+        console.log(`ERRO AO CURTIR/DESCURTIR O CARTÃO: ${err}`);
+      });
   }
 
   async function handleAddPlaceSubmit(card) {
