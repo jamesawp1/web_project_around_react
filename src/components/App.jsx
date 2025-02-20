@@ -53,6 +53,63 @@ function App() {
     })();
   };
 
+  const [cards, setCards] = useState([]);
+  useEffect(() => {
+    handleGetInitialCards();
+  }, []);
+  async function handleGetInitialCards() {
+    const response = await api.getInitialCards();
+    const cardsResponse = await response.json();
+
+    setCards(cardsResponse);
+  }
+
+  async function handleCardDelete(card) {
+    await api
+      .deleteUserCard(card._id)
+      .then((res) => {
+        if (res.status !== 200) {
+          return Promise.reject("Erro no delete card");
+        }
+        setCards(
+          cards.filter((currentCard) => {
+            return currentCard._id !== card._id;
+          })
+        );
+      })
+      .catch((error) => console.error(error));
+  }
+
+  async function handleCardLike(card) {
+    // Verificar mais uma vez se esse cartão já foi curtido
+    const isLiked = card.isLiked;
+
+    // Enviar uma solicitação para a API e obter os dados do cartão atualizados
+    /*await api
+        .changeLikeCardStatus(card._id, isLiked)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((currentCard) =>
+              currentCard._id === card._id
+                ? { ...currentCard, isLiked: newCard.isLiked }
+                : currentCard
+            )
+          );
+        })
+        .catch((error) => console.error(`OLHA O ERRO ${error}`));*/
+    await api
+      .changeLikeCardStatus(card._id, isLiked)
+      .then((response) => response.json())
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((error) => console.error(error));
+  }
+
   return (
     <>
       <div className="page">

@@ -1,26 +1,13 @@
-import { useState, useEffect } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card.jsx";
 import editImg from "../../images/icon__change-picture-profile.svg";
-import { api } from "../../utils/api.js";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 
 export default function Main(props) {
-  const [cards, setCards] = useState([]);
-  useEffect(() => {
-    handleGetInitialCards();
-  }, []);
-  async function handleGetInitialCards() {
-    const response = await api.getInitialCards();
-    const cardsResponse = await response.json();
-
-    setCards(cardsResponse);
-  }
-
   const { currentUser } = useContext(CurrentUserContext);
 
   /*async function handleCardLike(card) {
@@ -43,51 +30,6 @@ export default function Main(props) {
       });
     }
   }*/
-  async function handleCardLike(card) {
-    // Verificar mais uma vez se esse cartão já foi curtido
-    const isLiked = card.isLiked;
-
-    // Enviar uma solicitação para a API e obter os dados do cartão atualizados
-    /*await api
-      .changeLikeCardStatus(card._id, isLiked)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard._id === card._id
-              ? { ...currentCard, isLiked: newCard.isLiked }
-              : currentCard
-          )
-        );
-      })
-      .catch((error) => console.error(`OLHA O ERRO ${error}`));*/
-    await api
-      .changeLikeCardStatus(card._id, isLiked)
-      .then((response) => response.json())
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
-        );
-      })
-      .catch((error) => console.error(error));
-  }
-
-  async function handleCardDelete(card) {
-    await api
-      .deleteUserCard(card._id)
-      .then((res) => {
-        if (res.status !== 200) {
-          return Promise.reject("Erro no delete card");
-        }
-        setCards(
-          cards.filter((currentCard) => {
-            return currentCard._id !== card._id;
-          })
-        );
-      })
-      .catch((error) => console.error(error));
-  }
 
   const { popup, onOpenPopup, onClosePopup } = props;
   function handleOpenClick(popup) {
