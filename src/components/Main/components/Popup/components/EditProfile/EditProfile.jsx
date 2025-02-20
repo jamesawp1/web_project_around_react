@@ -8,17 +8,17 @@ export default function EditProfile() {
   const [description, setDescription] = useState(currentUser.about);
 
   const handleNameChange = (event) => {
-    setName(event.target.value); // Atualiza o nome (name) quando a entrada for alterada
+    setName(event.target.value);
   };
 
   const handleDescriptionChange = (event) => {
-    setDescription(event.target.value); // Atualiza a descrição (description) quando a entrada for alterada
+    setDescription(event.target.value);
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+    event.preventDefault();
 
-    handleUpdateUser({ name, about: description }); // Atualiza as informações do usuário
+    handleUpdateUser({ name, about: description });
   };
 
   return (

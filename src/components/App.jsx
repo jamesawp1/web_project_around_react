@@ -7,15 +7,6 @@ import { CurrentUserContext } from "../context/CurrentUserContext.js";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  /*async function handleGetUser() {
-    const response = await api.getInitialUserInfo();
-    const userResponse = await response.json();
-
-    setCurrentUser(userResponse);
-  }
-  useEffect(() => {
-    handleGetUser();
-  }, []);*/
 
   useEffect(() => {
     (async () => {
@@ -81,22 +72,8 @@ function App() {
   }
 
   async function handleCardLike(card) {
-    // Verificar mais uma vez se esse cartão já foi curtido
     const isLiked = card.isLiked;
 
-    // Enviar uma solicitação para a API e obter os dados do cartão atualizados
-    /*await api
-        .changeLikeCardStatus(card._id, isLiked)
-        .then((newCard) => {
-          setCards((state) =>
-            state.map((currentCard) =>
-              currentCard._id === card._id
-                ? { ...currentCard, isLiked: newCard.isLiked }
-                : currentCard
-            )
-          );
-        })
-        .catch((error) => console.error(`OLHA O ERRO ${error}`));*/
     await api
       .changeLikeCardStatus(card._id, isLiked)
       .then((response) => response.json())

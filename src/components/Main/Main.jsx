@@ -10,27 +10,6 @@ import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 export default function Main(props) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  /*async function handleCardLike(card) {
-    if (!card.isLiked) {
-      await api.putLikeUserCard(card._id).then((updatedCard) => {
-        const cartoso = updatedCard.json();
-        setCards((cards) => {
-          return cards.map((currentCard) => {
-            return currentCard._id === card._id ? cartoso : currentCard;
-          });
-        });
-      });
-    } else {
-      await api.deleteLikeUserCard(card._id).then((updatedCard) => {
-        setCards((cards) => {
-          return cards.map((currentCard) => {
-            return currentCard._id === card._id ? updatedCard : currentCard;
-          });
-        });
-      });
-    }
-  }*/
-
   const {
     popup,
     onOpenPopup,
