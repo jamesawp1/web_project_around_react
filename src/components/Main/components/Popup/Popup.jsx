@@ -8,7 +8,7 @@ export default function Popup(props) {
       <div
         className={`popup__container ${
           !title ? "popup-view-image__image-title-container" : ""
-        }`}
+        } ${title === "Tem certeza?" ? "popup__container-confirmation" : ""}`}
       >
         <img
           aria-label="Close modal"

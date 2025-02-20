@@ -2,6 +2,7 @@ import ImagePopup from "../Popup/components/ImagePopup/ImagePopup";
 import deleteIcon from "../../../../images/delete-icon.png";
 import likeIcon from "../../../../images/button__icon.svg";
 import likeIconActive from "../../../../images/button__icon_active.svg";
+import PopupConfirmation from "../Popup/components/PopupConfirmation/PopupConfirmation";
 
 export default function Card(props) {
   const { name, link, isLiked } = props.card;
@@ -12,13 +13,13 @@ export default function Card(props) {
     children: <ImagePopup card={props.card} />,
   };
   const cardLikeButtonSrc = isLiked ? likeIcon : likeIconActive;
+  const confirmationPopup = {
+    title: "Tem certeza?",
+    children: <PopupConfirmation card={props.card} onDelete={onCardDelete} />,
+  };
 
   function handleLikeClick() {
     onCardLike(props.card);
-  }
-
-  function handleDeleteClick() {
-    onCardDelete(props.card);
   }
 
   return (
@@ -28,7 +29,7 @@ export default function Card(props) {
           className="gallery__delete-icon"
           src={deleteIcon}
           alt="Ícone do botão que exclui uma imagem da galeria, representando uma lixeira"
-          onClick={handleDeleteClick}
+          onClick={() => handleOpenPopup(confirmationPopup)}
         />
       </button>
       <img
