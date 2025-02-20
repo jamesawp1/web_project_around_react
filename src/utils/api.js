@@ -45,6 +45,11 @@ class Api {
         name,
         link,
       }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject(`ERRO ${res.status}`);
     });
   }
 
