@@ -5,7 +5,7 @@ import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card.jsx";
 import editImg from "../../images/icon__change-picture-profile.svg";
 import { useContext } from "react";
-import { CurrentUserContext } from "../../context/CurrentUserContext.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 export default function Main(props) {
   const { currentUser } = useContext(CurrentUserContext);

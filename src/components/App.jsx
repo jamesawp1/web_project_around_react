@@ -3,7 +3,7 @@ import Main from "./Main/Main.jsx";
 import Footer from "./Footer/Footer.jsx";
 import { useState, useEffect } from "react";
 import { api } from "../utils/api.js";
-import { CurrentUserContext } from "../context/CurrentUserContext.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -100,9 +100,14 @@ function App() {
   }
 
   async function handleAddPlaceSubmit(card) {
-    await api.postUserCard(card).then((newCard) => {
-      setCards([newCard, ...cards]);
-    });
+    await api
+      .postUserCard(card)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+      })
+      .finally(() => {
+        handleClosePopup();
+      });
   }
 
   return (
