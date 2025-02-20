@@ -12,7 +12,7 @@ export default function Card(props) {
   const imageComponent = {
     children: <ImagePopup card={props.card} />,
   };
-  const cardLikeButtonSrc = isLiked ? likeIcon : likeIconActive;
+  const cardLikeButtonSrc = !isLiked ? likeIcon : likeIconActive;
   const confirmationPopup = {
     title: "Tem certeza?",
     children: <PopupConfirmation card={props.card} onDelete={onCardDelete} />,
