@@ -7,6 +7,8 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
+  const [popup, setPopup] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -30,7 +32,6 @@ function App() {
     })();
   };
 
-  const [popup, setPopup] = useState(null);
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
@@ -49,7 +50,6 @@ function App() {
     })();
   };
 
-  const [cards, setCards] = useState([]);
   useEffect(() => {
     handleGetInitialCards();
   }, []);
